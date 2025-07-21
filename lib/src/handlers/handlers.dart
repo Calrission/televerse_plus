@@ -1,2 +1,2 @@
 export 'handler.dart';
-export 'registry_extension.dart';
+export 'handler_extension.dart';
