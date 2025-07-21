@@ -1,6 +1,6 @@
 name: televerse_plus
 description: Televerse plus
-version: 1.0.0+3
+version: 1.0.0+4
 publish_to: none
 
 environment:

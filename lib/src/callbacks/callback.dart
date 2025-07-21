@@ -26,18 +26,25 @@ abstract class Callback<T>{
 }
 
 abstract class CallbackWithData<T> extends Callback<T> {
-  T parser(String data);
+  late final T data;
+
+  (T?, bool) parser(String data);
 
   @override
   Future<void> callback(Context ctx, CallbackQuery query) async {}
-  Future<void> callbackData(Context ctx, T data, CallbackQuery query);
+  Future<void> callbackData(Context ctx, CallbackQuery query);
 
   @override
   bool isValid(CallbackQuery query) {
-    return query.data != null && isValidData(query.data!);
+    if (query.data == null){
+      return false;
+    }
+    final result = parser(query.data!);
+    if (result.$2){
+      data = result.$1 as T;
+    }
+    return query.data != null && result.$2;
   }
-
-  bool isValidData(String data);
 
   @override
   Future<void> _callbackQuery(Context ctx, CallbackQuery query) async {
@@ -45,8 +52,9 @@ abstract class CallbackWithData<T> extends Callback<T> {
     if (query.data == null){
       print("Warning! CallbackWithData wait data, but is not exist!");
     }else{
-      final parsedData = parser(query.data!);
-      callbackData(ctx, parsedData, query);
+      if (isValid(query)){
+        callbackData(ctx, query);
+      }
     }
   }
 }
