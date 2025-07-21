@@ -1,13 +1,12 @@
 name: televerse_plus
 description: Televerse plus
-version: 1.0.0+1
+version: 1.0.0+2
 publish_to: none
 
 environment:
   sdk: ^3.7.3
 
 dependencies:
-  dotenv: ^4.2.0
   televerse: ^2.6.1
 
 dev_dependencies:
