@@ -1,6 +1,7 @@
 name: televerse_plus
 description: Televerse plus
-version: 1.0.0
+version: 1.0.0+1
+publish_to: none
 
 environment:
   sdk: ^3.7.3
