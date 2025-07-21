@@ -1,0 +1,14 @@
+name: televerse_plus
+description: Televerse plus
+version: 1.0.0
+
+environment:
+  sdk: ^3.7.3
+
+dependencies:
+  dotenv: ^4.2.0
+  televerse: ^2.6.1
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.24.0
