@@ -26,7 +26,7 @@ abstract class Callback<T>{
 }
 
 abstract class CallbackWithData<T> extends Callback<T> {
-  late final T data;
+  late T data;
 
   (T?, bool) parser(String data);
 
