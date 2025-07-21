@@ -31,10 +31,6 @@ abstract class CallbackWithData<T> extends Callback<T> {
   (T?, bool) parser(String data);
 
   @override
-  Future<void> callback(Context ctx, CallbackQuery query) async {}
-  Future<void> callbackData(Context ctx, CallbackQuery query);
-
-  @override
   bool isValid(CallbackQuery query) {
     if (query.data == null){
       return false;
@@ -53,7 +49,7 @@ abstract class CallbackWithData<T> extends Callback<T> {
       print("Warning! CallbackWithData wait data, but is not exist!");
     }else{
       if (isValid(query)){
-        callbackData(ctx, query);
+        callback(ctx, query);
       }
     }
   }
