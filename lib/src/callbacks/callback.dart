@@ -5,7 +5,7 @@ abstract class Callback<T>{
   bool isValid(CallbackQuery query);
 
   Future<void> callback(Context ctx, CallbackQuery query);
-  
+
   Future<void> _callbackQuery(Context ctx, CallbackQuery query) async {
     await callback(ctx, query);
   }
@@ -44,7 +44,6 @@ abstract class CallbackWithData<T> extends Callback<T> {
 
   @override
   Future<void> _callbackQuery(Context ctx, CallbackQuery query) async {
-    super._callbackQuery(ctx, query);
     if (query.data == null){
       print("Warning! CallbackWithData wait data, but is not exist!");
     }else{
