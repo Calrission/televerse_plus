@@ -1,28 +1,13 @@
 import 'package:televerse/telegram.dart';
 import 'package:televerse/televerse.dart';
+import 'package:televerse_plus/src/bot/bot.dart';
 
 abstract class Callback<T>{
   bool isValid(CallbackQuery query);
 
-  Future<void> callback(Context ctx, CallbackQuery query);
+  Future<void> call(Context ctx, CallbackQuery query);
 
-  Future<void> _callbackQuery(Context ctx, CallbackQuery query) async {
-    await callback(ctx, query);
-  }
-
-  Future<void> _callback(Context ctx) async {
-    final query = ctx.callbackQuery;
-    if (query == null){
-      return;
-    }
-    if (isValid(query)){
-      _callbackQuery(ctx, query);
-    }
-  }
-
-  void register(Bot bot){
-    bot.callbackQuery(RegExp(''), _callback);
-  }
+  void onRegister(BotPlus bot){}
 }
 
 abstract class CallbackWithData<T> extends Callback<T> {
@@ -40,16 +25,5 @@ abstract class CallbackWithData<T> extends Callback<T> {
       data = result.$1 as T;
     }
     return query.data != null && result.$2;
-  }
-
-  @override
-  Future<void> _callbackQuery(Context ctx, CallbackQuery query) async {
-    if (query.data == null){
-      print("Warning! CallbackWithData wait data, but is not exist!");
-    }else{
-      if (isValid(query)){
-        callback(ctx, query);
-      }
-    }
   }
 }
