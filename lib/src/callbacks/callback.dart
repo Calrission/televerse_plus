@@ -21,7 +21,7 @@ abstract class Callback<T>{
   }
 
   void register(Bot bot){
-    bot.onCallbackQuery(_callback);
+    bot.callbackQuery(RegExp(''), _callback);
   }
 }
 
