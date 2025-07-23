@@ -4,11 +4,11 @@ import 'package:televerse_plus/src/callbacks/callback.dart';
 import 'package:televerse_plus/src/handlers/handler.dart';
 
 class BotPlus {
-  final Bot _bot;
+  final Bot bot;
   final List<Callback> _callbacks = [];
 
-  BotPlus(Bot bot): _bot = bot {
-    _bot.onCallbackQuery(_globalCallback);
+  BotPlus(this.bot){
+    bot.onCallbackQuery(_globalCallback);
   }
 
   FutureOr<void> _globalCallback(Context ctx) async {
@@ -29,6 +29,6 @@ class BotPlus {
   }
 
   void registerHandler(Handler handler){
-    handler.register(_bot);
+    handler.register(this);
   }
 }
